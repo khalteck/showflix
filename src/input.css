@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .slide {
+    animation: slide 0.5s ease-out;
+  }
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      transform: translateX(200px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0px);
+    }
+  }
+  .slideBack {
+    animation: slideBack 0.6s ease-out;
+  }
+  @keyframes slideBack {
+    0% {
+      opacity: 0;
+      transform: translateX(0px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(400px);
+    }
+  }
+  .grid-lg {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
