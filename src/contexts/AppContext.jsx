@@ -22,7 +22,7 @@ const AppContextProvider = ({ children }) => {
       setLoader(true);
       try {
         const response = await fetch(
-          `http://www.omdbapi.com/?apikey=43a2d6d1&s=${searchTerm}`
+          `https://www.omdbapi.com/?apikey=43a2d6d1&s=${searchTerm}`
         );
         const data = await response.json();
         if (response.ok) {
@@ -43,7 +43,7 @@ const AppContextProvider = ({ children }) => {
       try {
         const apiKey = "43a2d6d1";
         const response = await fetch(
-          `http://www.omdbapi.com/?t=${title}&y=${year}&apikey=${apiKey}`
+          `https://www.omdbapi.com/?t=${title}&y=${year}&apikey=${apiKey}`
         );
         const data = await response.json();
         if (response.ok) {
