@@ -1,14 +1,13 @@
-// import { useState } from "react";
 import { useSelector } from "react-redux";
 import Header from "../components/Header";
 import Loader from "../components/Loader";
-// import { setMovies } from "../redux/moviesSlice";
 import MovieCard from "../components/MovieCard";
 import Sidebar from "../components/Sidebar";
 import { useAppContext } from "../contexts/AppContext";
 import ScrollToTop from "../ScrollToTop";
 
 const Homepage = () => {
+  // Accessing the required values and functions from the AppContext
   const {
     setSearchTerm,
     searchTerm,
@@ -17,8 +16,11 @@ const Homepage = () => {
     noMovieFound,
     setNoMovieFound,
   } = useAppContext();
+
+  // Accessing the movies array from the Redux store
   const { movies } = useSelector((state) => state.movies);
 
+  // Function to handle the movie search
   const handleSearch = async (e) => {
     e.preventDefault();
     await fetchMovies();
@@ -54,12 +56,15 @@ const Homepage = () => {
         </div>
 
         <div className="w-full mt-10 flex flex-col gap-5">
+          {/* Display search results if there are movies */}
           {movies?.length > 0 && (
             <p className="tracking-wider">
               Results for:{" "}
               <span className="font-bold text-[1.25rem]">{searchTerm}</span>
             </p>
           )}
+
+          {/* Display message if there are no movies and noMovieFound is false */}
           {movies?.length === 0 && !noMovieFound && (
             <div className="w-full md:w-[70%] h-[200px] mt-5 flex justify-center items-center border border-[#5e2eeb] rounded-xl">
               <p className="font-bold text-[1.25rem] text-[#15152b]/40">
@@ -67,6 +72,8 @@ const Homepage = () => {
               </p>
             </div>
           )}
+
+          {/* Display message if no movies found for the search term */}
           {noMovieFound && searchTerm && (
             <div className="w-full md:w-[70%] h-[200px] mt-5 flex justify-center items-center border border-[#5e2eeb] rounded-xl">
               <p className="font-bold text-[1.25rem] text-[#15152b]/40">
@@ -74,9 +81,12 @@ const Homepage = () => {
               </p>
             </div>
           )}
+
+          {/* Display loader while fetching movies */}
           {loader ? (
             <Loader />
           ) : (
+            // Display movie cards if there are movies
             <div className="w-fit mx-auto md:mx-0 py-[50px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 place-items-center md:place-items-start md:gap-10 gap-6 flex-wrap">
               {movies?.map((item, index) => (
                 <MovieCard item={item} key={index} />

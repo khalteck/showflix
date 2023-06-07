@@ -3,24 +3,32 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   const [showTag, setShowTag] = useState(false);
+
   function displayTag() {
     setShowTag(true);
   }
+
   function hideTag() {
     setShowTag(false);
   }
+
   return (
     <div className="bg-[#fefffe] hidden md:w-[220px] lg:w-[280px] h-screen fixed left-0 top-0 border-r-2 border-[#eef0f7] py-4 text-[#15152b] md:flex flex-col gap-10">
+      {/* ShowFlix Logo */}
       <Link to="/">
         <p className="font-bold md:text-[1.5rem] lg:text-[1.85rem] pl-12">
           Show<span className="text-[#5e2eeb]">Flix</span>
         </p>
       </Link>
 
+      {/* Sidebar Menu */}
       <ul className="w-full font-bold flex flex-col gap-5 ">
+        {/* Search Menu Item */}
         <Link to="/">
           <li className="py-1 pl-12 rounded-lg relative flex gap-3 items-center hover:bg-[#5e2eeb]/10 cursor-pointer transition-all duration-300">
+            {/* Active Indicator */}
             <div className="w-2 h-full bg-[#5e2eeb] absolute left-0 top-0 rounded-full"></div>
+            {/* Search Icon */}
             <div className="w-6 h-6 p-1 rounded-md bg-[#5e2eeb] flex justify-center items-center">
               <img
                 alt="search icon"
@@ -32,14 +40,17 @@ const Sidebar = () => {
           </li>
         </Link>
 
+        {/* Watchlist Menu Item */}
         <li
           onMouseOver={displayTag}
           onMouseOut={hideTag}
           className="py-1 pl-12 rounded-lg relative flex gap-3 items-center hover:bg-[#5e2eeb]/10 cursor-pointer transition-all duration-300"
         >
+          {/* Active Indicator */}
           {showTag && (
             <div className="w-2 h-full bg-[#5e2eeb] absolute left-0 top-0 rounded-full"></div>
           )}
+          {/* Watchlist Icon */}
           <img
             alt="search icon"
             src="/images/icons8-love-50.png"

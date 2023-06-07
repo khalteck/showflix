@@ -11,10 +11,13 @@ const Details = () => {
   );
 
   const navigate = useNavigate();
+
+  // Function to navigate to the movie details page
   function link() {
     navigate(`/movie/${currentMovie?.Title}`);
   }
 
+  // Function to navigate back to the home page
   function back() {
     const boardElement = document.getElementById("board");
     boardElement.classList.remove("slide");
@@ -80,7 +83,7 @@ const Details = () => {
             Results for:{" "}
             <span className="font-bold text-[1.25rem]">Mortal Kombat</span>
           </p>
-          {/* movie display cont */}
+          {/* Movie display container */}
           <div className="w-fit lg:min-w-fit mx-auto md:mx-0 py-[50px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 place-items-center md:place-items-start md:gap-10 gap-6 flex-wrap">
             {movies?.map((item, index) => {
               return <Moviecard item={item} key={index} />;

@@ -1,12 +1,14 @@
 import { useSelector } from "react-redux";
 import Header from "../components/Header";
-import Moviecard from "../components/MovieCard";
+import MovieCard from "../components/MovieCard";
 import Sidebar from "../components/Sidebar";
 import ScrollToTop from "../ScrollToTop";
 
 const Movie = () => {
+  // Accessing the movies and movieDetails from the Redux store
   const { movies, movieDetails } = useSelector((state) => state.movies);
 
+  // Filtering related movies by excluding the current movie
   const relatedMovies = movies?.filter(
     (item) => item?.imdbID !== movieDetails?.imdbID
   );
@@ -71,8 +73,9 @@ const Movie = () => {
           <h2 className="text-[1.75rem] font-bold">Related Movies</h2>
 
           <div className="w-fit mx-auto md:mx-0 py-[50px] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 place-items-center md:place-items-start md:gap-10 gap-6">
+            {/* Rendering the related movies */}
             {relatedMovies?.map((item, index) => (
-              <Moviecard item={item} key={index} />
+              <MovieCard item={item} key={index} />
             ))}
           </div>
         </div>
