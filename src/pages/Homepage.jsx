@@ -44,11 +44,18 @@ const Homepage = () => {
         </div>
 
         <div className="w-full mt-10 flex flex-col gap-5">
-          {movies && (
+          {movies?.length > 0 && (
             <p className="tracking-wider">
               Results for:{" "}
               <span className="font-bold text-[1.25rem]">{searchTerm}</span>
             </p>
+          )}
+          {movies?.length === 0 && (
+            <div className="w-full md:w-[70%] h-[200px] mt-5 flex justify-center items-center border border-[#5e2eeb] rounded-xl">
+              <p className="font-bold text-[1.25rem] text-[#15152b]/40">
+                Nothing yet, search for a movie...
+              </p>
+            </div>
           )}
           {loader ? (
             <Loader />
