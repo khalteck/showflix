@@ -1151,6 +1151,10 @@ video {
     align-items: center;
   }
 
+  .md\:justify-start{
+    justify-content: flex-start;
+  }
+
   .md\:gap-10{
     gap: 2.5rem;
   }

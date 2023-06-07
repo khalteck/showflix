@@ -27,7 +27,7 @@ const Movie = () => {
             <p className="mt-4 text-[1.2rem] tracking-wider">
               {movieDetails?.Plot}
             </p>
-            <div className="w-full flex gap-3 justify-between md:gap-[80px] items-center mt-8">
+            <div className="w-full flex gap-3 justify-between md:justify-start md:gap-[80px] items-center mt-8">
               <div className="flex items-center gap-3 text-[#15152b]/60">
                 <img
                   alt="search icon"
