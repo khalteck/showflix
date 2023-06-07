@@ -9,7 +9,14 @@ import { useAppContext } from "../contexts/AppContext";
 import ScrollToTop from "../ScrollToTop";
 
 const Homepage = () => {
-  const { setSearchTerm, searchTerm, fetchMovies, loader } = useAppContext();
+  const {
+    setSearchTerm,
+    searchTerm,
+    fetchMovies,
+    loader,
+    noMovieFound,
+    setNoMovieFound,
+  } = useAppContext();
   const { movies } = useSelector((state) => state.movies);
 
   const handleSearch = async (e) => {
@@ -31,7 +38,10 @@ const Homepage = () => {
             <input
               type="text"
               value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+                setNoMovieFound(false);
+              }}
               className="w-full md:w-2/3 bg-[#eef0f7] px-3 py-4 rounded-xl outline-none"
             />
             <button
@@ -50,10 +60,17 @@ const Homepage = () => {
               <span className="font-bold text-[1.25rem]">{searchTerm}</span>
             </p>
           )}
-          {movies?.length === 0 && (
+          {movies?.length === 0 && !noMovieFound && (
             <div className="w-full md:w-[70%] h-[200px] mt-5 flex justify-center items-center border border-[#5e2eeb] rounded-xl">
               <p className="font-bold text-[1.25rem] text-[#15152b]/40">
                 Nothing yet, search for a movie...
+              </p>
+            </div>
+          )}
+          {noMovieFound && searchTerm && (
+            <div className="w-full md:w-[70%] h-[200px] mt-5 flex justify-center items-center border border-[#5e2eeb] rounded-xl">
+              <p className="font-bold text-[1.25rem] text-[#15152b]/40">
+                No results for movie {`"${searchTerm}"`}...
               </p>
             </div>
           )}

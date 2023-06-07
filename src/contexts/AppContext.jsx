@@ -14,10 +14,13 @@ const AppContextProvider = ({ children }) => {
   const [loader, setLoader] = useState(false);
 
   const [searchTerm, setSearchTerm] = useState("");
+  const [noMovieFound, setNoMovieFound] = useState(false);
+  // const [noMovieFound, setNoMovieFound] = useState(true);
 
   const dispatch = useDispatch();
 
   const fetchMovies = async () => {
+    setNoMovieFound(false);
     if (searchTerm) {
       setLoader(true);
       try {
@@ -25,10 +28,12 @@ const AppContextProvider = ({ children }) => {
           `https://www.omdbapi.com/?apikey=43a2d6d1&s=${searchTerm}`
         );
         const data = await response.json();
-        if (response.ok) {
+
+        if (data.Response === "True") {
           dispatch(setMovies(data?.Search));
         } else {
           console.log("error occured", response.status);
+          setNoMovieFound(true);
         }
       } catch (error) {
         console.error("Error fetching movies:", error);
@@ -67,6 +72,8 @@ const AppContextProvider = ({ children }) => {
         fetchMovies,
         searchTerm,
         fetchMoviesDetails,
+        noMovieFound,
+        setNoMovieFound,
       }}
     >
       {children}
